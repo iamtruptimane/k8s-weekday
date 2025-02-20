@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-svc
+  labels:
+    #service label
+    app: my-app
+    env: dev
+  namespace: dev
+spec:
+  type: ClusterIP
+  selector:
+    #Refer to the pod's label to attach the service so that all pods with the label my-app will be associated with this service.
+    app: my-app
+  ports:
+  #expose nginx app
+  - name: http
+    protocol: TCP
+    #pod port
+    port: 80
+    #port to expose on container
+    targetPort: 80
